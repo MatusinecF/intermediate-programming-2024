@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 
+
+
+
 void print(std::vector<int> data) {
     if (data.size() == 0) {
         std::cout << "[]";
@@ -16,19 +19,81 @@ void print(std::vector<int> data) {
 }
 
 
+void print2(std::vector<bool> data) {
+    if (data.size() == 0) {
+        std::cout << "[]";
+        return;
+    }
+
+    std::cout << "[ ";
+    for (std::size_t i = 0; i < data.size() - 1; i++) {
+        std::cout << data[i] << ", ";
+    }
+
+    std::cout << data.back() << " ]";
+}
+
+
+
+
 /*
  * Napište funkci merge, která vezme dvě vzestupně seřazená pole a spojí je do jednoho
  * vzestupně seřazeného seznamu
  * */
 std::vector<int> merge(std::vector<int> a, std::vector<int> b) {
-    return {};
+    std::vector<int>vysledek;
+    int pozice_a = 0;
+    int pozice_b = 0;
+    int cislo_a = a[pozice_a];
+    int cislo_b = b[pozice_b];
+    int pocet_pozic = a.size() + b.size() + 1;
+    int velikost_a = a.size();
+    int velikost_b = b.size();
+    for(int i = 0; i <= pocet_pozic; i++){
+        if(cislo_a >= cislo_b){
+            if(pozice_b <= velikost_b){
+                vysledek.push_back(cislo_b);
+                pozice_b++;
+                cislo_b = b[pozice_b];
+            }
+        }
+        if(cislo_a < cislo_b){
+            if(pozice_a < velikost_a){
+                vysledek.push_back(cislo_a);
+                pozice_a++;
+                cislo_a = a[pozice_a];
+            }
+        }
+    }
+    if(velikost_a < velikost_b){
+        int diference = velikost_b - velikost_a;
+        for(int i = 0; i < diference; i++){
+            vysledek.push_back(b[velikost_b-diference+i]);
+        }
+    }
+    if(velikost_a > velikost_b){
+        int diference = velikost_a - velikost_b;
+        for(int i = 0; i < diference; i++){
+            vysledek.push_back(a[velikost_a-diference+i]);
+        }
+    }
+    return vysledek;
 }
 
 /* Napište funkci histogram, která dostane pole čísel z rozsahu [0-100), a vrátí nové pole takové, že
  * na i-té pozici nového seznamu bude uložen počet výskytů čísla i ve vstupním poli.
  */
 std::vector<int> histogram(std::vector<int> data) {
-    return {};
+    std::vector<int>vysledek;
+    for(int i = 0; i < 100; i++){
+        int cislo = i;
+        int cislo_vysledek = 0;
+        for(std::size_t i = 0; i < data.size(); i++){
+            if(cislo == data[i])cislo_vysledek++;
+        }
+        vysledek.push_back(cislo_vysledek);
+    }
+    return vysledek;
 }
 
 // Napište (čistou) funkci, která simuluje jeden krok výpočtu
@@ -85,13 +150,17 @@ std::vector<int> histogram(std::vector<int> data) {
 // pravidel na ‹state›.
 
 std::vector<bool> cellular_step(std::vector<bool> input) {
-    return input;
+    std::vector<bool>vysledek;
+    //if()
+    
+    return vysledek;
 }
 
 int main() {
+    std::vector<bool> cellurar = {1, 0, 1, 0, 1, 1};
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
-    std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
-    std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9 };
+    std::vector<int> asc1 = { 0, 2, 4, 7, 8};
+    std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9, 10 };
     std::vector<int> vec2 = { 43, 93, 76, 49, 11,  7, 70, 20, 43, 36,
                               73, 47, 77, 48, 91, 46, 31, 78, 63, 61,
                                7, 88, 42, 62, 84, 29, 61, 28, 18, 41,
@@ -128,5 +197,9 @@ int main() {
 
     std::cout << "histogram(vec2): ";
     print(histogram(vec2));
+    std::cout << std::endl;
+
+    std::cout << "cellurar_step(cellular): ";
+    print2(cellular_step(cellurar));
     std::cout << std::endl;
 }

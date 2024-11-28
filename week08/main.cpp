@@ -16,27 +16,83 @@ void print(std::vector<int> data) {
 }
 
 int sum(std::vector<int> data) {
-    return 0;
+    int soucet= 0;
+    for(std::size_t i = 0; i < data.size(); i++ ){
+        soucet += data[i]; 
+    }
+    return soucet;
 }
 
 float average(std::vector<int> data) {
-    return 0.0;
+    float avarage = 1.0;
+    int sum = 0;
+    float pocet = data.size();
+    for(std::size_t i = 0; i < data.size(); i++){
+        sum += data[i];
+    }
+    avarage = sum/pocet;
+    return avarage;
 }
 
 float median(std::vector<int> data) {
-    return 0.0;
+    float median_2;
+    if(data.size() % 2 == 1){
+        median_2 = data[(data.size() - 1)/2];
+    }
+    else{
+        median_2 = (data[(data.size()/2 )- 1] + data[data.size()/2 ])/2.0;
+    }
+  
+    return median_2;
 }
 
 std::vector<int> range(int start, int end) {
+    
+    if(start < end){
+        int diference = end - start;
+        int number = start;
+        std::vector<int> vysledek;
+        for(int i = 0; i < diference; i++){
+            vysledek.push_back(number);
+            number++;
+        }
+        return vysledek;
+    }
+    if(start > end){
+        int diference = start - end;
+        int number = end;
+        std::vector<int> vysledek;
+        for(int i = 0; i < diference; i++){
+            vysledek.push_back(number);
+            number++;
+        }
+        return vysledek;
+    }
+
     return {};
 }
 
 std::vector<int> runningSum(std::vector<int> data) {
-    return {};
+    std::vector<int>vysledek;
+    int number = 0;
+    for(std::size_t i = 0; i < data.size(); i++){
+        vysledek.push_back(data[i] + number);
+        number = vysledek[i];
+    }
+    return vysledek;
 }
 
 std::vector<int> rotateRight(std::vector<int> data, int count) {
-    return data;
+    std::vector<int>vysledek;
+    int posunuti = count % data.size();
+    for(int i = 0; i < posunuti; i++){
+        vysledek.push_back(data[data.size() - posunuti + i]);
+    }
+    for(std::size_t i = 0; i < data.size(); i++){
+        vysledek.push_back(data[i]);
+    }
+    vysledek.resize(data.size());
+    return vysledek;
 }
 
 int main() {
@@ -46,7 +102,7 @@ int main() {
 
     std::cout << "sum(vec1): " << sum(vec1) << std::endl;
     std::cout << "average(vec1): " << average(vec1) << std::endl;
-    std::cout << "median(asc1): " << median(vec1) << std::endl;
+    std::cout << "median(asc1): " << median(asc1) << std::endl;
 
     std::cout << "range(5, 10): ";
     print(range(5, 10));
@@ -58,5 +114,9 @@ int main() {
 
     std::cout << "runningSum(vec1): ";
     print(runningSum(vec1));
+    std::cout << std::endl;
+    
+    std::cout << "rotetaRight(vec1): ";
+    print(rotateRight(vec1, 12));
     std::cout << std::endl;
 }
