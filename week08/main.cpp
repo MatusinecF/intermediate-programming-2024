@@ -95,6 +95,16 @@ std::vector<int> rotateRight(std::vector<int> data, int count) {
     return vysledek;
 }
 
+std::vector<int> filter_larger(std::vector<int> original, int value){
+    std::vector<int> vysledek;
+        for(std::size_t i = 0; i < original.size(); i++){
+            if(original[i] > value){
+                vysledek.push_back(original[i]);
+            }
+        }
+    return vysledek;
+}
+
 int main() {
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
@@ -119,4 +129,12 @@ int main() {
     std::cout << "rotetaRight(vec1): ";
     print(rotateRight(vec1, 12));
     std::cout << std::endl;
+
+    std::cout << "filter_large(vec1): ";
+    print(filter_larger(vec1, 4));
+    std::cout << std::endl;
+
+
+
+
 }
