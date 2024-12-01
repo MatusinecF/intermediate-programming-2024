@@ -97,15 +97,37 @@ std::vector<int> rotateRight(std::vector<int> data, int count) {
 
 std::vector<int> filter_larger(std::vector<int> original, int value){
     std::vector<int> vysledek;
-        for(std::size_t i = 0; i < original.size(); i++){
-            if(original[i] > value){
-                vysledek.push_back(original[i]);
-            }
+    for(std::size_t i = 0; i < original.size(); i++){
+        if(original[i] > value){
+            vysledek.push_back(original[i]);
         }
+    }
     return vysledek;
+}
+std::vector<int> serazeni(std::vector<int> data, int cislo){
+    //std::vector<int> vysledek;
+    
+    for(std::size_t i = 0; i < data.size(); i++){
+        if(data[i] < cislo){
+            data[i] = data[i];
+        }
+
+
+    }
+    return data;
+}
+
+bool palindron(std::vector<int> data){
+    for(std::size_t i = 0; i < data.size()/2; i++){
+        if(data[i] != data[data.size() - i - 1]){
+            return false;
+        }
+    }
+    return true;
 }
 
 int main() {
+    std::vector<int> asc3 = { 1, 2, 1};
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
     std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9 };
@@ -134,7 +156,12 @@ int main() {
     print(filter_larger(vec1, 4));
     std::cout << std::endl;
 
+    std::cout << "serazeni(vec1): ";
+    print(serazeni(vec1, 4));
+    std::cout << std::endl;
 
 
-
+    std::cout << "palindron(vec1): ";
+    std::cout << palindron(asc3);
+    std::cout << std::endl; 
 }
