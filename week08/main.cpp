@@ -164,4 +164,5 @@ int main() {
     std::cout << "palindron(vec1): ";
     std::cout << palindron(asc3);
     std::cout << std::endl; 
+    std::cout << "Hello world" << std::endl;
 }
