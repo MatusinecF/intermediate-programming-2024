@@ -126,13 +126,38 @@ bool palindron(std::vector<int> data){
     return true;
 }
 
+std::vector<int> sum(std::vector<std::vector<int>> vec) {
+    // {{0, 1}, {2}, {}} -> {1, 2, 0}
+    std::vector<int> vysledek;
+    for(std::size_t i = 0; i < vec.size(); i++){
+        int soucet = 0;
+        for(std::size_t j = 0; j < vec[i].size(); j++){
+            soucet += vec[i][j];
+        }
+        vysledek.push_back(soucet);
+    }
+    return vysledek;
+}
+std::vector<int> concat(std::vector<std::vector<int>> vec) {
+    // {{0, 1}, {2}, {}} -> {0, 1, 2}
+    std::vector<int> vysledek;
+    for(std::size_t i = 0; i < vec.size(); i++){
+        for(std::size_t j = 0; j < vec[i].size(); j++){
+            vysledek.push_back(vec[i][j]);
+        }
+    }
+    return vysledek;
+}
+
+
 int main() {
-    std::vector<int> asc3 = { 1, 2, 1};
+    std::vector<std::vector<int>> vec2 = {{0, 1} , {2}, {}};
+    /*std::vector<int> asc3 = { 1, 2, 1};
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
-    std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9 };
+    std::vector<int> asc2 = { 1, 3, 5, 6, 7, 9 };*/
 
-    std::cout << "sum(vec1): " << sum(vec1) << std::endl;
+    /*std::cout << "sum(vec1): " << sum(vec1) << std::endl;
     std::cout << "average(vec1): " << average(vec1) << std::endl;
     std::cout << "median(asc1): " << median(asc1) << std::endl;
 
@@ -163,6 +188,14 @@ int main() {
 
     std::cout << "palindron(vec1): ";
     std::cout << palindron(asc3);
-    std::cout << std::endl; 
+    std::cout << std::endl; */
     std::cout << "Hello world" << std::endl;
+
+    std::cout << "sum(vec2): ";
+    print(sum(vec2));
+    std::cout << std::endl;
+
+    std::cout << "concat(vec2): ";
+    print(concat(vec2));
+    std::cout << std::endl;    
 }
