@@ -15,6 +15,23 @@ void print(std::vector<int> data) {
     std::cout << data.back() << " ]";
 }
 
+void print_vektor(std::vector<std::vector<int>> data){
+    if (data.size() == 0) {
+        std::cout << "[]";
+        return;
+    }
+    std::cout << "[ ";
+    for (std::size_t i = 0; i < data.size(); i++) {
+        std::vector<int> clen = data[i];
+        
+        print(clen);
+        if(i < data.size() - 1)std::cout << ", ";
+        clen.resize(0);
+    }
+
+    std::cout << " ]";
+}
+
 int sum(std::vector<int> data) {
     int soucet= 0;
     for(std::size_t i = 0; i < data.size(); i++ ){
@@ -138,6 +155,7 @@ std::vector<int> sum(std::vector<std::vector<int>> vec) {
     }
     return vysledek;
 }
+
 std::vector<int> concat(std::vector<std::vector<int>> vec) {
     // {{0, 1}, {2}, {}} -> {0, 1, 2}
     std::vector<int> vysledek;
@@ -149,9 +167,35 @@ std::vector<int> concat(std::vector<std::vector<int>> vec) {
     return vysledek;
 }
 
-
+std::vector<std::vector<int>> transpose(std::vector<std::vector<int>> vec) {
+    // {
+    //   {0, 1, 2},
+    //   {3, 4, 5},
+    //   {6, 7, 8},
+    // } -> {
+    //   {0, 3, 6},
+    //   {1, 4, 7},
+    //   {2, 5, 8},
+    // }
+    std::vector<std::vector<int>> vysledek;
+    std::vector<int> clen;
+    for(std::size_t i = 0; i < vec[1].size(); i++){
+        for(std::size_t j = 0; j < vec.size(); j++){
+            clen.push_back(vec[j][i]);
+        }
+        
+        vysledek.push_back(clen);
+        clen.resize(0);
+    }
+    return vysledek;
+}
 int main() {
     std::vector<std::vector<int>> vec2 = {{0, 1} , {2}, {}};
+    std::vector<std::vector<int>> vec3 = {
+        {0, 1, 2},
+        {3, 4, 5},
+        {6, 7, 8},
+    };
     /*std::vector<int> asc3 = { 1, 2, 1};
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
@@ -198,4 +242,10 @@ int main() {
     std::cout << "concat(vec2): ";
     print(concat(vec2));
     std::cout << std::endl;    
+
+    std::cout << "transpose(vec3): ";
+    print_vektor(transpose(vec3));
+    std::cout << std::endl;
+
+
 }
