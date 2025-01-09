@@ -189,13 +189,48 @@ std::vector<std::vector<int>> transpose(std::vector<std::vector<int>> vec) {
     }
     return vysledek;
 }
+
+std::vector<std::vector<int>> cartesian_product(std::vector<int> a, std::vector<int> b) {
+    // {0, 1} {2, 4} -> {{0, 2}, {0, 4}, {1, 2}, {1, 4}}
+    // {0, 1} {} -> {} 
+    std::vector<std::vector<int>> vysledek;
+    std::vector<int> clen;
+    for(std::size_t j = 0; j < a.size(); j++){
+        for(std::size_t i = 0; i < b.size(); i++){
+            clen.push_back(a[j]);
+            clen.push_back(b[i]);
+            vysledek.push_back(clen);
+            clen.resize(0);
+        }
+    }
+    return vysledek;
+}
+
+std::vector<std::vector<int>> sum_2(std::vector<std::vector<int>> a, std::vector<std::vector<int>> b){
+    std::vector<std::vector<int>> vysledek;
+    std::vector<int> clen;
+    for(std::size_t i = 0; i < a.size(); i++){
+        for(std::size_t j =0; j < a[i].size(); i++){
+            
+        }
+
+    }
+
+
+}
+
 int main() {
+    std::vector<std::vector<int>> vec4 = {{0, 1}, {2, 3}};
     std::vector<std::vector<int>> vec2 = {{0, 1} , {2}, {}};
     std::vector<std::vector<int>> vec3 = {
         {0, 1, 2},
         {3, 4, 5},
         {6, 7, 8},
     };
+    std::vector<int> vec5 ={0,1};
+    std::vector<int> vec6 = {2,4};
+    std::vector<std::vector<int>> vec7 ={{ 1, 2, 3, 4}, {5, 6, 7}, {8, 9}};
+    std::vector<std::vector<int>> vec8 = {{1, 5}, {4,6}};
     /*std::vector<int> asc3 = { 1, 2, 1};
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
@@ -246,6 +281,11 @@ int main() {
     std::cout << "transpose(vec3): ";
     print_vektor(transpose(vec3));
     std::cout << std::endl;
+
+    std::cout << "cartesian_product(vec4 , vec5): ";
+    print_vektor(cartesian_product(vec5 , vec6));
+    std::cout << std::endl;
+
 
 
 }
