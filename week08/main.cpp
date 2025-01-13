@@ -238,7 +238,7 @@ std::vector<std::vector<int>> split(std::vector<int> a, int n){
     std::vector<int> clen;
     for(std::size_t i = 0; i < a.size()/n; i++){
         for(int j = 0; j < n; j++){
-            clen.push_back(a[j +i*n]);
+            clen.push_back(a[j + i*n]);
         }
         vysledek.push_back(clen);
         clen.resize(0);
@@ -258,7 +258,7 @@ int main() {
     std::vector<int> vec6 = {2,4};
     std::vector<std::vector<int>> vec7 ={{ 1, 2, 3, 4}, {5, 6, 7}, {8, 9}};
     std::vector<std::vector<int>> vec8 = {{1, 5}, {4,6}};
-    std::vector<int> vec9 = {1, 2, 3, 4, 5, 6};
+    std::vector<int> vec9 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     /*std::vector<int> asc3 = { 1, 2, 1};
     std::vector<int> vec1 = { 1, 9, 4, 8, 4, 0, 9, 2, 3, 5, 6 };
     std::vector<int> asc1 = { 0, 2, 4, 7, 8 };
@@ -319,7 +319,7 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "split(vec4 , vec5): ";
-    print_vektor(split(vec9 , 3));
+    print_vektor(split(vec9 , 1));
     std::cout << std::endl; 
 
 }
