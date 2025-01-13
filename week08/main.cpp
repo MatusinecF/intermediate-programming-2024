@@ -321,5 +321,5 @@ int main() {
     std::cout << "split(vec4 , vec5): ";
     print_vektor(split(vec9 , 1));
     std::cout << std::endl; 
-
+    
 }
