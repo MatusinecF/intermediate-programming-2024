@@ -319,7 +319,7 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "split(vec4 , vec5): ";
-    print_vektor(split(vec9 , 1));
+    print_vektor(split(vec9 , 2));
     std::cout << std::endl; 
     
 }
