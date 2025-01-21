@@ -140,28 +140,26 @@ std::vector<std::string> paragraphs(std::string text) {
     for(int i = 0; i < text.size(); i++){
         if(text[i] == '\n' && text[i+1] == '\n'){
             odstavec = text.substr(pocatek,i-pocatek);
-            if(odstavec.size() > 0){
-                vysledek.push_back(odstavec);
-            }
-            std::cout<< odstavec <<std::endl;
-            pocatek = i + 1;
+            vysledek.push_back(odstavec);
+            pocatek = i+2;
         }
     }
     odstavec = text.substr(pocatek);
-    std::cout<<odstavec<<std::endl;
     vysledek.push_back(odstavec);
     return vysledek;
-
-
-
-    return {};
 }
 
 /* Naimplementujte funkci check_brackets,
  * která zkontroluje jestli je text předaný v argumentu text validní
  * Text je validní pokud každá otevírací závorka '(' má náležitou uzavírací závorku ')' */
 bool check_brackets(std::string text) {
-    return false;
+    int pocet = 0;
+    for(size_t i = 0; i < text.size();i++){
+        if(text[i] == '(')pocet++;
+        if(text[i] == ')')pocet--;
+    }
+    if(pocet == 0) return true;
+    else return false;
 }
 
 int main() {
