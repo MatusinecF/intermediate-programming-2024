@@ -155,10 +155,11 @@ std::vector<std::string> paragraphs(std::string text) {
 bool check_brackets(std::string text) {
     int pocet = 0;
     for(size_t i = 0; i < text.size();i++){
-        if(text[i] == '(')pocet++;
+        if(text[i] == '(')pocet++;//)text(
         if(text[i] == ')')pocet--;
     }
     if(pocet == 0) return true;
+    if(pocet < 0) return false;
     else return false;
 }
 
