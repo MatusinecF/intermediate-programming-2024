@@ -49,6 +49,35 @@ std::set<std::string> employees_with_missing_records(std::vector<std::tuple<std:
     return vysledek;
 }
 
+bool can_make_recipe(std::set<std::string> required, std::set<std::string> known){
+    for(std::string elem: required){
+        if(!known.contains(elem)){
+            return false;
+        }
+    }
+
+}
+
+
+/*bool can_make(std::string goal, std::set<> start, std::map<std::set<std::string>> recepies){
+
+    bool vystup;
+    std::set<std::string> aktual_ingredience = start;
+    std::string potrebna_ingredience = goal;
+    bool wanted_ingredience = false;
+
+    for(auto [ingredience, vysledek] : recepies){
+        if(potrebna_ingredience == vysledek){
+            for(size_t i = 0; i < ingredience.size(); i++){
+                for(size_t i = 0; i < aktual_ingredience.size(); i++){
+                    if(ingredience[i] == aktual_ingredience)
+                }
+            }
+        }
+    }
+    return vystup;
+}*/
+
 void main_test() {
     std::string id1 = "abc00001";
     std::string id2 = "xyz00002";
@@ -95,7 +124,7 @@ void main_test() {
 }
 
 int main() {
-    std::string id1 = "abc00001";
+    /*std::string id1 = "abc00001";
     std::tuple<std::string, int, bool> e4 = {id1, 200, ENTRY};
     std::tuple<std::string, int, bool> e5 = {id1, 300, ENTRY};
     std::tuple<std::string, int, bool> e1 = {id1, 100, ENTRY};
@@ -103,5 +132,6 @@ int main() {
 
     main_test();
     std::cout << "Všechny testy proběhly úspěšně.\n";
-    return 0;
+    return 0;*/
+    //std::map<>
 }
