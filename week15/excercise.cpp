@@ -59,7 +59,38 @@ struct School {
  * 2) V každé učebně probíhá maximálně jedna výuka současně
  * 3) Žádný vyučující neučí zaráz více věcí
  */
+bool are_students_valid(School school){
+    for(Student student : school.students){
+        int pocet_vyskytu = 0;
+        for(Class trida : school.classes){
+            if(trida.students.contains(student)){
+                pocet_vyskytu++;
+            }
+        }
+        if(pocet_vyskytu != 1) return false;
+    }
+    return true;
+}
+
+bool are_rooms_valid(School school){
+    std::map<Room, std::set<TimetableSlot>> rozvrh_mistnosti;
+    for(Room mistnost : school.classes){
+        if(rozvrh_mistnosti[].contains())
+    }
+
+
+
+}
+
+
+
+
+
 bool is_valid(School school) {
+    return are_students_valid(school);
+    
+    
+    
     return true;
 }
 
