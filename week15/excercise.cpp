@@ -76,18 +76,18 @@ bool are_rooms_valid(School school){
     std::map<Room, std::set<TimetableSlot>> rozvrh_mistnosti;
     
     for(Class trida : school.classes){
-        for(auto [podrobny_rozvrh, predmet_a_mistnost] : trida.timetable){
+        for(auto [rozvrh, predmet_a_mistnost] : trida.timetable){
             auto[predmet, mistnost] = predmet_a_mistnost;
             if(rozvrh_mistnosti.contains(mistnost)){
-                if(rozvrh_mistnosti[mistnost].contains(podrobny_rozvrh)){
+                if(rozvrh_mistnosti[mistnost].contains(rozvrh)){
                     return false;
                 }
                 else{
-                    rozvrh_mistnosti[mistnost].insert({podrobny_rozvrh});
+                    rozvrh_mistnosti[mistnost].insert({rozvrh});
                 }   
             }
             else{
-                rozvrh_mistnosti.insert({mistnost, {podrobny_rozvrh}});
+                rozvrh_mistnosti.insert({mistnost, {rozvrh}});
             }
         }
     }
@@ -99,18 +99,18 @@ bool are_teacher_valid(School school){
     std::map<Teacher, std::set<TimetableSlot>> rozvrh_ucitele;
     
     for(Class trida : school.classes){
-        for(auto [podrobny_rozvrh, predmet_a_mistnost] : trida.timetable){
+        for(auto [rozvrh, predmet_a_mistnost] : trida.timetable){
             auto[predmet, mistnost] = predmet_a_mistnost;
-            if(rozvrh_mistnosti.contains(mistnost)){
-                if(rozvrh_mistnosti[mistnost].contains(podrobny_rozvrh)){
+            if(rozvrh_ucitele.contains(predmet.teacher)){
+                if(rozvrh_ucitele[predmet.teacher].contains(rozvrh)){
                     return false;
                 }
                 else{
-                    rozvrh_mistnosti[mistnost].insert({podrobny_rozvrh});
-                }   
+                    rozvrh_ucitele[predmet.teacher].insert(rozvrh);
+                }
             }
             else{
-                rozvrh_mistnosti.insert({mistnost, {podrobny_rozvrh}});
+                rozvrh_ucitele.insert({predmet.teacher, {rozvrh}});
             }
         }
     }
