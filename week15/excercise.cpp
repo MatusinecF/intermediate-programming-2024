@@ -74,24 +74,59 @@ bool are_students_valid(School school){
 
 bool are_rooms_valid(School school){
     std::map<Room, std::set<TimetableSlot>> rozvrh_mistnosti;
-    for(Room mistnost : school.classes){
-        if(rozvrh_mistnosti[].contains())
+    
+    for(Class trida : school.classes){
+        for(auto [podrobny_rozvrh, predmet_a_mistnost] : trida.timetable){
+            auto[predmet, mistnost] = predmet_a_mistnost;
+            if(rozvrh_mistnosti.contains(mistnost)){
+                if(rozvrh_mistnosti[mistnost].contains(podrobny_rozvrh)){
+                    return false;
+                }
+                else{
+                    rozvrh_mistnosti[mistnost].insert({podrobny_rozvrh});
+                }   
+            }
+            else{
+                rozvrh_mistnosti.insert({mistnost, {podrobny_rozvrh}});
+            }
+        }
     }
 
+    return true;
+}
 
+bool are_teacher_valid(School school){
+    std::map<Teacher, std::set<TimetableSlot>> rozvrh_ucitele;
+    
+    for(Class trida : school.classes){
+        for(auto [podrobny_rozvrh, predmet_a_mistnost] : trida.timetable){
+            auto[predmet, mistnost] = predmet_a_mistnost;
+            if(rozvrh_mistnosti.contains(mistnost)){
+                if(rozvrh_mistnosti[mistnost].contains(podrobny_rozvrh)){
+                    return false;
+                }
+                else{
+                    rozvrh_mistnosti[mistnost].insert({podrobny_rozvrh});
+                }   
+            }
+            else{
+                rozvrh_mistnosti.insert({mistnost, {podrobny_rozvrh}});
+            }
+        }
+    }
+    return true;
 
 }
 
 
 
-
-
 bool is_valid(School school) {
-    return are_students_valid(school);
+ 
+    if(are_students_valid(school) == true && are_rooms_valid(school) == true && are_teacher_valid(school) == true){
+        return true;
+    }
     
-    
-    
-    return true;
+    return false;
 }
 
 void test_is_valid() {
